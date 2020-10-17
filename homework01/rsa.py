@@ -14,7 +14,16 @@ def is_prime(n: int) -> bool:
     False
     """
     # PUT YOUR CODE HERE
+    temp_divider = 2
+    while n % temp_divider != 0:
+        temp_divider += 1
+
+    return n == temp_divider
+
     pass
+
+
+print(is_prime(9))
 
 
 def gcd(a: int, b: int) -> int:
