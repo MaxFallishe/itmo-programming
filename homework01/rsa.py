@@ -14,11 +14,14 @@ def is_prime(n: int) -> bool:
     False
     """
     # PUT YOUR CODE HERE
-    temp_divider = 2
-    while n % temp_divider != 0:
-        temp_divider += 1
+    if n > 1:
+        temp_divider = 2
+        while n % temp_divider != 0:
+            temp_divider += 1
 
-    return n == temp_divider
+        return n == temp_divider
+    else:
+        return (False)
 
 
 def gcd(a: int, b: int) -> int:
@@ -49,11 +52,14 @@ def multiplicative_inverse(e: int, phi: int) -> int:
     23
     """
     # PUT YOUR CODE HERE
-    temp_iterator = 1
+    if phi == 1:
+        return 0
+    else:
+        temp_iterator = 1
 
-    while (e * temp_iterator) % phi != 1:
-        temp_iterator += 1
-    return temp_iterator
+        while (e * temp_iterator) % phi != 1:
+            temp_iterator += 1
+        return temp_iterator
 
 
 def generate_keypair(p: int, q: int) -> tp.Tuple[tp.Tuple[int, int], tp.Tuple[int, int]]:
