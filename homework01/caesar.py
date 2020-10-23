@@ -17,7 +17,7 @@ def encrypt_caesar(plaintext: str, shift: int = 3) -> str:
     """
     ciphertext = ""
     # PUT YOUR CODE HERE
-    lower_letters_ords = [i for i in range(97, 122+1)]
+    lower_letters_ords = [i for i in range(ord("A"), ord('Z')+1)]
 
     for letter in plaintext:
         upper_flag = False
@@ -64,7 +64,7 @@ def decrypt_caesar(ciphertext: str, shift: int = 3) -> str:
     plaintext = ""
     # PUT YOUR CODE HERE
 
-    lower_letters_ords = [i for i in range(97, 122 + 1)]
+    lower_letters_ords = [i for i in range(ord("A"), ord('Z')+1)]
 
     for letter in ciphertext:
         upper_flag = False

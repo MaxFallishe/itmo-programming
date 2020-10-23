@@ -21,7 +21,7 @@ def is_prime(n: int) -> bool:
 
         return n == temp_divider
     else:
-        return (False)
+        return False
 
 
 def gcd(a: int, b: int) -> int:
@@ -40,7 +40,9 @@ def gcd(a: int, b: int) -> int:
         else:
             b = b % a
 
-    return a+b
+    greater_common_divisor = a + b
+
+    return greater_common_divisor
 
 
 def multiplicative_inverse(e: int, phi: int) -> int:
