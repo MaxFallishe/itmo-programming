@@ -17,7 +17,7 @@ def encrypt_vigenere(plaintext: str, keyword: str) -> str:
 
     keyword = keyword.lower()
 
-    lower_letters_ords = [i for i in range(ord("a"), ord('z')+1)]
+    lower_letters_ords = [i for i in range(ord("a"), ord("z") + 1)]
 
     for letter_index in range(len(plaintext)):
 
@@ -39,7 +39,11 @@ def encrypt_vigenere(plaintext: str, keyword: str) -> str:
                 shift = shift % 26
 
             if ord(caesar_letter) not in lower_letters_ords:
-                caesar_letter = chr(min(lower_letters_ords) + (ord(caesar_letter) - max(lower_letters_ords)) - 1)
+                caesar_letter = chr(
+                    min(lower_letters_ords)
+                    + (ord(caesar_letter) - max(lower_letters_ords))
+                    - 1
+                )
 
             if upper_flag is True:
                 caesar_letter = chr(ord(caesar_letter) - 32)
@@ -70,7 +74,7 @@ def decrypt_vigenere(ciphertext: str, keyword: str) -> str:
 
     keyword = keyword.lower()
 
-    lower_letters_ords = [i for i in range(ord("a"), ord('z')+1)]
+    lower_letters_ords = [i for i in range(ord("a"), ord("z") + 1)]
 
     for letter_index in range(len(ciphertext)):
         letter = ciphertext[letter_index]
@@ -92,7 +96,11 @@ def decrypt_vigenere(ciphertext: str, keyword: str) -> str:
                 shift = shift % 26
 
             if ord(caesar_letter) not in lower_letters_ords:
-                caesar_letter = chr(max(lower_letters_ords) - (min(lower_letters_ords) - ord(caesar_letter)) + 1)
+                caesar_letter = chr(
+                    max(lower_letters_ords)
+                    - (min(lower_letters_ords) - ord(caesar_letter))
+                    + 1
+                )
 
             if upper_flag is True:
                 caesar_letter = chr(ord(caesar_letter) - 32)
