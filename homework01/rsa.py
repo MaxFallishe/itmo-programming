@@ -54,14 +54,25 @@ def multiplicative_inverse(e: int, phi: int) -> int:
     23
     """
     # PUT YOUR CODE HERE
-    if phi == 1:
-        return 0
-    else:
-        temp_iterator = 1
+    x1, x2, x3 = 1, 0, phi
+    y1, y2, y3 = 0, 1, e
 
-        while (e * temp_iterator) % phi != 1:
-            temp_iterator += 1
-        return temp_iterator
+    while y3 != 1:
+        if y3 == 0:
+            return 0
+        qfc = x3 // y3
+        t1 = x1 - qfc * y1
+        t2 = x2 - qfc * y2
+        t3 = x3 - qfc * y3
+
+        x1, x2, x3 = y1, y2, y3
+        y1, y2, y3 = t1, t2, t3
+
+    nod = y2 % phi
+    return nod
+
+
+print(multiplicative_inverse(42, 2017))
 
 
 def generate_keypair(
