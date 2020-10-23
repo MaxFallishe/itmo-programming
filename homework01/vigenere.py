@@ -17,7 +17,7 @@ def encrypt_vigenere(plaintext: str, keyword: str) -> str:
 
     keyword = keyword.lower()
 
-    lower_letters_ords = [i for i in range(ord("A"), ord('Z')+1)]
+    lower_letters_ords = [i for i in range(ord("a"), ord('z')+1)]
 
     for letter_index in range(len(plaintext)):
 
@@ -70,7 +70,7 @@ def decrypt_vigenere(ciphertext: str, keyword: str) -> str:
 
     keyword = keyword.lower()
 
-    lower_letters_ords = [i for i in range(ord("A"), ord('Z')+1)]
+    lower_letters_ords = [i for i in range(ord("a"), ord('z')+1)]
 
     for letter_index in range(len(ciphertext)):
         letter = ciphertext[letter_index]
