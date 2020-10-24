@@ -18,7 +18,6 @@ def is_prime(n: int) -> bool:
         temp_divider = 2
         while n % temp_divider != 0:
             temp_divider += 1
-
         return n == temp_divider
     else:
         return False
@@ -39,9 +38,7 @@ def gcd(a: int, b: int) -> int:
             a = a % b
         else:
             b = b % a
-
     greater_common_divisor = a + b
-
     return greater_common_divisor
 
 
@@ -64,15 +61,10 @@ def multiplicative_inverse(e: int, phi: int) -> int:
         t1 = x1 - qfc * y1
         t2 = x2 - qfc * y2
         t3 = x3 - qfc * y3
-
         x1, x2, x3 = y1, y2, y3
         y1, y2, y3 = t1, t2, t3
-
     nod = y2 % phi
     return nod
-
-
-print(multiplicative_inverse(42, 2017))
 
 
 def generate_keypair(
