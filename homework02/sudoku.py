@@ -29,8 +29,7 @@ def group(values: List[str], n: int) -> List[List[str]]:
     [[1, 2, 3], [4, 5, 6], [7, 8, 9]]
     """
     split_list = [values[i:i+n] for i in range(0, len(values), n)]
-    print(values)
-    print(split_list)
+    return split_list
 
 
 def get_row(grid: List[List[str]], pos: Tuple[int, int]) -> List[str]:
