@@ -102,7 +102,11 @@ def find_empty_positions(grid: List[List[str]]) -> Optional[Tuple[int, int]]:
     >>> find_empty_positions([['1', '2', '3'], ['4', '5', '6'], ['.', '8', '9']])
     (2, 0)
     """
-    pass
+    for row_index in range(len(grid)):
+        for column_index in range(len(grid)):
+            if grid[row_index][column_index] == '.':
+                empty_position = (row_index, column_index)
+                return empty_position
 
 
 def find_possible_values(grid: List[List[str]], pos: Tuple[int, int]) -> Set[str]:
@@ -116,7 +120,12 @@ def find_possible_values(grid: List[List[str]], pos: Tuple[int, int]) -> Set[str
     >>> values == {'2', '5', '9'}
     True
     """
-    pass
+    range_of_possible_numbers = {'1', '2', '3', '4', '5', '6', '7', '8', '9'}
+    already_numbers_in_column = set(get_col(grid, pos))
+    already_numbers_in_row = set(get_row(grid, pos))
+    already_numbers_in_block = set(get_block(grid, pos))
+    possible_numbers_for_cell = range_of_possible_numbers - already_numbers_in_column - already_numbers_in_row - already_numbers_in_block
+    return possible_numbers_for_cell
 
 
 def solve(grid: List[List[str]]) -> Optional[List[List[str]]]:
@@ -132,13 +141,55 @@ def solve(grid: List[List[str]]) -> Optional[List[List[str]]]:
     >>> solve(grid)
     [['5', '3', '4', '6', '7', '8', '9', '1', '2'], ['6', '7', '2', '1', '9', '5', '3', '4', '8'], ['1', '9', '8', '3', '4', '2', '5', '6', '7'], ['8', '5', '9', '7', '6', '1', '4', '2', '3'], ['4', '2', '6', '8', '5', '3', '7', '9', '1'], ['7', '1', '3', '9', '2', '4', '8', '5', '6'], ['9', '6', '1', '5', '3', '7', '2', '8', '4'], ['2', '8', '7', '4', '1', '9', '6', '3', '5'], ['3', '4', '5', '2', '8', '6', '1', '7', '9']]
     """
-    pass
+    try:
+        pos = find_empty_positions(grid)
+        possible_values = find_possible_values(grid, pos)
+
+        if len(possible_values) == 0:
+            pass
+            #print('red flag')
+        else:
+            #print('green flag')
+
+            for possible_value in possible_values:
+
+                edited_grid = [i[:] for i in grid]
+
+                edited_grid[pos[0]][pos[1]] = possible_value
+
+                answer = solve(edited_grid)
+
+                if answer is not None:
+                    return answer
+    except Exception as e:
+        return grid
 
 
 def check_solution(solution: List[List[str]]) -> bool:
     """ Если решение solution верно, то вернуть True, в противном случае False """
     # TODO: Add doctests with bad puzzles
-    pass
+    numbers_template = set([str(i) for i in range(1, 9+1)])
+
+    for i in range(len(solution)):
+        if numbers_template == set(get_col(solution, (0, i))):
+            pass
+        else:
+            return False
+
+    for i in range(len(solution)):
+        if numbers_template == set(get_row(solution, (i, 0))):
+            pass
+        else:
+            return False
+
+    for i in range(len(solution)):
+        for j in range(len(solution)):
+            if numbers_template == set(get_block(solution, (i, j))):
+                pass
+            else:
+                return False
+
+    return True
 
 
 def generate_sudoku(N: int) -> List[List[str]]:
@@ -163,7 +214,26 @@ def generate_sudoku(N: int) -> List[List[str]]:
     >>> check_solution(solution)
     True
     """
-    pass
+    import random
+
+    n = 3
+    table = [[str(((i*n + i//n + j) % (n*n) + 1)) for j in range(n*n)] for i in range(n*n)]
+    for i in range(random.randint(0, 4)):
+        table = list(map(list, zip(*table)))
+
+    all_cells_coordinates = [(i, j) for j in range(9) for i in range(9)]
+    random.shuffle(all_cells_coordinates)
+
+    if N > 81:
+        N = 81
+
+    replace_counter = 0
+    while 81 - replace_counter != N:
+        coordinates = all_cells_coordinates.pop()
+        table[coordinates[0]][coordinates[1]] = '.'
+        replace_counter += 1
+
+    return table
 
 
 if __name__ == '__main__':
@@ -175,3 +245,4 @@ if __name__ == '__main__':
             print(f"Puzzle {fname} can't be solved")
         else:
             display(solution)
+            print(check_solution(solution))
