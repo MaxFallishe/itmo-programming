@@ -61,7 +61,7 @@ def get_col(grid: List[List[str]], pos: Tuple[int, int]) -> List[str]:
     >>> get_col([['1', '2', '3'], ['4', '5', '6'], ['.', '8', '9']], (0, 2))
     ['3', '6', '9']
     """
-    column_content = [i[pos[-1]] for i in grid]
+    column_content = [i[pos[1]] for i in grid]
     return column_content
 
 
@@ -197,7 +197,7 @@ def get_block(grid: List[List[str]], pos: Tuple[int, int]) -> List[str]:
     return block_content
 
 
-def find_empty_positions(grid: List[List[str]]) -> Optional[Tuple[int, int]]:
+def find_empty_positions(grid: List[List[str]]) -> Optional[Tuple[int, int]]:  # type: ignore[return]
     """Найти первую свободную позицию в пазле
 
     >>> find_empty_positions([['1', '2', '.'], ['4', '5', '6'], ['7', '8', '9']])
@@ -214,7 +214,7 @@ def find_empty_positions(grid: List[List[str]]) -> Optional[Tuple[int, int]]:
                 return empty_position
 
 
-def find_possible_values(grid: List[List[str]], pos: Tuple[int, int]) -> Set[str]:
+def find_possible_values(grid: List[List[str]], pos: Tuple[int, int]) -> Set[str]:  # type: ignore[return]
     """Вернуть множество возможных значения для указанной позиции
 
     >>> grid = read_sudoku('puzzle1.txt')
