@@ -61,7 +61,11 @@ def get_col(grid: List[List[str]], pos: Tuple[int, int]) -> List[str]:
     >>> get_col([['1', '2', '3'], ['4', '5', '6'], ['.', '8', '9']], (0, 2))
     ['3', '6', '9']
     """
+    print(grid)
+    print("<<<<<<<<<<<>>>>>>>>>>>>>>>>>>>>")
+    # print(pos)
     column_content = [i[pos[-1]] for i in grid]
+    print("--------------------------------------------------")
     return column_content
 
 
@@ -279,27 +283,29 @@ def check_solution(solution: List[List[str]]) -> bool:
     """ Если решение solution верно, то вернуть True, в противном случае False """
     # TODO: Add doctests with bad puzzles
     numbers_template = set([str(i) for i in range(1, 9 + 1)])
-
-    for i in range(len(solution)):
-        if numbers_template == set(get_col(solution, (0, i))):
-            pass
-        else:
-            return False
-
-    for i in range(len(solution)):
-        if numbers_template == set(get_row(solution, (i, 0))):
-            pass
-        else:
-            return False
-
-    for i in range(len(solution)):
-        for j in range(len(solution)):
-            if numbers_template == set(get_block(solution, (i, j))):
+    try:
+        for i in range(len(solution)):
+            if numbers_template == set(get_col(solution, (0, i))):
                 pass
             else:
                 return False
 
-    return True
+        for i in range(len(solution)):
+            if numbers_template == set(get_row(solution, (i, 0))):
+                pass
+            else:
+                return False
+
+        for i in range(len(solution)):
+            for j in range(len(solution)):
+                if numbers_template == set(get_block(solution, (i, j))):
+                    pass
+                else:
+                    return False
+
+        return True
+    except Exception as e:
+        return False
 
 
 def generate_sudoku(N: int) -> List[List[str]]:
