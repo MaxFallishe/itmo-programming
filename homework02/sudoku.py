@@ -253,7 +253,7 @@ def solve(grid: List[List[str]]) -> Optional[List[List[str]]]:  # type: ignore[r
     """
     try:
         pos = find_empty_positions(grid)
-        possible_values = find_possible_values(grid, pos)
+        possible_values = find_possible_values(grid, pos)  # type: ignore
 
         if len(possible_values) == 0:
             pass
@@ -263,7 +263,7 @@ def solve(grid: List[List[str]]) -> Optional[List[List[str]]]:  # type: ignore[r
 
                 edited_grid = [i[:] for i in grid]
 
-                edited_grid[pos[0]][pos[1]] = possible_value
+                edited_grid[pos[0]][pos[1]] = possible_value  # type: ignore
 
                 answer = solve(edited_grid)
 
