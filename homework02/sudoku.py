@@ -276,8 +276,8 @@ def solve(grid: List[List[str]]) -> Optional[List[List[str]]]:
 def check_solution(solution: List[List[str]]) -> bool:
     """ Если решение solution верно, то вернуть True, в противном случае False """
     # TODO: Add doctests with bad puzzles
-    numbers_template = set([str(i) for i in range(1, 9 + 1)])
-    try:
+    if len(solution) == 9:
+        numbers_template = set([str(i) for i in range(1, 9 + 1)])
         for i in range(len(solution)):
             if numbers_template == set(get_col(solution, (0, i))):
                 pass
@@ -298,7 +298,7 @@ def check_solution(solution: List[List[str]]) -> bool:
                     return False
 
         return True
-    except Exception as e:
+    else:
         return False
 
 
