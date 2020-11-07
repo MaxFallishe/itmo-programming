@@ -61,11 +61,7 @@ def get_col(grid: List[List[str]], pos: Tuple[int, int]) -> List[str]:
     >>> get_col([['1', '2', '3'], ['4', '5', '6'], ['.', '8', '9']], (0, 2))
     ['3', '6', '9']
     """
-    print(grid)
-    print("<<<<<<<<<<<>>>>>>>>>>>>>>>>>>>>")
-    # print(pos)
     column_content = [i[pos[-1]] for i in grid]
-    print("--------------------------------------------------")
     return column_content
 
 
@@ -261,9 +257,7 @@ def solve(grid: List[List[str]]) -> Optional[List[List[str]]]:
 
         if len(possible_values) == 0:
             pass
-            # print('red flag')
         else:
-            # print('green flag')
 
             for possible_value in possible_values:
 
@@ -364,4 +358,3 @@ if __name__ == "__main__":
             print(f"Puzzle {fname} can't be solved")
         else:
             display(solution)
-            print(check_solution(solution))
