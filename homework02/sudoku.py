@@ -238,7 +238,7 @@ def find_possible_values(grid: List[List[str]], pos: Tuple[int, int]) -> Set[str
     return possible_numbers_for_cell
 
 
-def solve(grid: List[List[str]]) -> Optional[List[List[str]]]:
+def solve(grid: List[List[str]]) -> Optional[List[List[str]]]:  # type: ignore[return]
     """ Решение пазла, заданного в grid """
     """ Как решать Судоку?
         1. Найти свободную позицию
