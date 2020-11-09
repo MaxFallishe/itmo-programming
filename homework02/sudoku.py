@@ -258,15 +258,10 @@ def solve(grid: List[List[str]]) -> Optional[List[List[str]]]:  # type: ignore[r
         if len(possible_values) == 0:
             pass
         else:
-
             for possible_value in possible_values:
-
                 edited_grid = [i[:] for i in grid]
-
                 edited_grid[pos[0]][pos[1]] = possible_value  # type: ignore
-
                 answer = solve(edited_grid)
-
                 if answer is not None:
                     return answer
     except Exception as e:
