@@ -76,123 +76,18 @@ def get_block(grid: List[List[str]], pos: Tuple[int, int]) -> List[str]:
     >>> get_block(grid, (8, 8))
     ['2', '8', '.', '.', '.', '5', '.', '7', '9']
     """
-    square_0_0 = [
-        (0, 0),
-        (0, 1),
-        (0, 2),
-        (1, 0),
-        (1, 1),
-        (1, 2),
-        (2, 0),
-        (2, 1),
-        (2, 2),
-    ]
-    square_1_0 = [
-        (3, 0),
-        (3, 1),
-        (3, 2),
-        (4, 0),
-        (4, 1),
-        (4, 2),
-        (5, 0),
-        (5, 1),
-        (5, 2),
-    ]
-    square_2_0 = [
-        (6, 0),
-        (6, 1),
-        (6, 2),
-        (7, 0),
-        (7, 1),
-        (7, 2),
-        (8, 0),
-        (8, 1),
-        (8, 2),
-    ]
-    square_0_1 = [
-        (0, 3),
-        (0, 4),
-        (0, 5),
-        (1, 3),
-        (1, 4),
-        (1, 5),
-        (2, 3),
-        (2, 4),
-        (2, 5),
-    ]
-    square_1_1 = [
-        (3, 3),
-        (3, 4),
-        (3, 5),
-        (4, 3),
-        (4, 4),
-        (4, 5),
-        (5, 3),
-        (5, 4),
-        (5, 5),
-    ]
-    square_2_1 = [
-        (6, 3),
-        (6, 4),
-        (6, 5),
-        (7, 3),
-        (7, 4),
-        (7, 5),
-        (8, 3),
-        (8, 4),
-        (8, 5),
-    ]
-    square_0_2 = [
-        (0, 6),
-        (0, 7),
-        (0, 8),
-        (1, 6),
-        (1, 7),
-        (1, 8),
-        (2, 6),
-        (2, 7),
-        (2, 8),
-    ]
-    square_1_2 = [
-        (3, 6),
-        (3, 7),
-        (3, 8),
-        (4, 6),
-        (4, 7),
-        (4, 8),
-        (5, 6),
-        (5, 7),
-        (5, 8),
-    ]
-    square_2_2 = [
-        (6, 6),
-        (6, 7),
-        (6, 8),
-        (7, 6),
-        (7, 7),
-        (7, 8),
-        (8, 6),
-        (8, 7),
-        (8, 8),
-    ]
+    coordinate_of_row = pos[0]
+    coordinate_of_column = pos[1]
+    while coordinate_of_row % 3 != 0:
+        coordinate_of_row -= 1
 
-    squares = [
-        square_0_0,
-        square_0_1,
-        square_0_2,
-        square_1_0,
-        square_1_1,
-        square_1_2,
-        square_2_0,
-        square_2_1,
-        square_2_2,
-    ]
+    while coordinate_of_column % 3 != 0:
+        coordinate_of_column -= 1
+
     block_content = []
-    for square in squares:
-        if pos in square:
-            for value in square:
-                block_content.append(grid[value[0]][value[1]])
-            break
+    for i in range(coordinate_of_row, coordinate_of_row+3):
+        for j in range(coordinate_of_column, coordinate_of_column+3):
+            block_content.append(grid[i][j])
 
     return block_content
 
