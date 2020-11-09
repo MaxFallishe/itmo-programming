@@ -85,8 +85,8 @@ def get_block(grid: List[List[str]], pos: Tuple[int, int]) -> List[str]:
         coordinate_of_column -= 1
 
     block_content = []
-    for i in range(coordinate_of_row, coordinate_of_row+3):
-        for j in range(coordinate_of_column, coordinate_of_column+3):
+    for i in range(coordinate_of_row, coordinate_of_row + 3):
+        for j in range(coordinate_of_column, coordinate_of_column + 3):
             block_content.append(grid[i][j])
 
     return block_content
