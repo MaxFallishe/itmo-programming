@@ -79,12 +79,8 @@ def get_block(grid: List[List[str]], pos: Tuple[int, int]) -> List[str]:
     """
     coordinate_of_row = pos[0]
     coordinate_of_column = pos[1]
-    while coordinate_of_row % 3 != 0:
-        coordinate_of_row -= 1
-
-    while coordinate_of_column % 3 != 0:
-        coordinate_of_column -= 1
-
+    coordinate_of_row = (coordinate_of_row // 3) * 3
+    coordinate_of_column = (coordinate_of_column // 3) * 3
     block_content = []
     for i in range(coordinate_of_row, coordinate_of_row + 3):
         for j in range(coordinate_of_column, coordinate_of_column + 3):
