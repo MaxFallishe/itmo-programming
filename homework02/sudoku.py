@@ -1,4 +1,5 @@
 from typing import Tuple, List, Set, Optional
+import random
 
 
 def read_sudoku(filename: str) -> List[List[str]]:
@@ -213,8 +214,6 @@ def generate_sudoku(N: int) -> List[List[str]]:
     >>> check_solution(solution)
     True
     """
-    import random
-
     n = 3
     table = [
         [str(((i * n + i // n + j) % (n * n) + 1)) for j in range(n * n)]
