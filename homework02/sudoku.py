@@ -110,7 +110,7 @@ def find_empty_positions(grid: List[List[str]]) -> Optional[Tuple[int, int]]:  #
                 return empty_position
 
 
-def find_possible_values(grid: List[List[str]], pos: Tuple[int, int]) -> Set[str]:  # type: ignore[return]
+def find_possible_values(grid: List[List[str]], pos: Tuple[int, int]) -> Set[str]:
     """Вернуть множество возможных значения для указанной позиции
 
     >>> grid = read_sudoku('puzzle1.txt')
