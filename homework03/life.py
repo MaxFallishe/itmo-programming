@@ -104,10 +104,25 @@ class GameOfLife:
         """
         Прочитать состояние клеток из указанного файла.
         """
-        pass
+        with open(filename, "r") as file:
+            file_lines = file.readlines()
+            file_lines = [line.rstrip() for line in file_lines]
 
-    def save(filename: pathlib.Path) -> None:
+        read_out_grid = [[int(j) for j in i] for i in file_lines]
+        game_template_from_file = GameOfLife(
+            (len(read_out_grid), len(read_out_grid[0]))
+        )
+        game_template_from_file.curr_generation = read_out_grid
+        return game_template_from_file
+
+    def save(self, filename: pathlib.Path) -> None:
         """
         Сохранить текущее состояние клеток в указанный файл.
         """
-        pass
+        print(self.curr_generation)
+
+        f = open(filename, "w")
+        for i in range(len(self.curr_generation)):
+            for j in self.curr_generation[i]:
+                f.write(str(j))
+            f.write("\n")
