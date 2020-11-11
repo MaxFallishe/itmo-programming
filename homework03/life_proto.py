@@ -56,7 +56,7 @@ class GameOfLife:
         running = True
         while running:
             for event in pygame.event.get():
-                if event.type == QUIT:
+                if event.type == QUIT:  # type: ignore
                     running = False
             self.draw_grid()
             self.draw_lines()
