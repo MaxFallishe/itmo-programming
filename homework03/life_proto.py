@@ -69,7 +69,7 @@ class GameOfLife:
             clock.tick(self.speed)
         pygame.quit()
 
-    def create_grid(self, randomize: bool = True) -> Grid:
+    def create_grid(self, randomize: bool = False) -> Grid:
         """
         Создание списка клеток.
 
