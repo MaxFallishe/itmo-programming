@@ -119,8 +119,6 @@ class GameOfLife:
         """
         Сохранить текущее состояние клеток в указанный файл.
         """
-        print(self.curr_generation)
-
         f = open(filename, "w")
         for i in range(len(self.curr_generation)):
             for j in self.curr_generation[i]:
