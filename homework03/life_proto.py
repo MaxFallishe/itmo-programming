@@ -1,8 +1,11 @@
 import pygame  # type: ignore
 import random
+import os
 
 from pygame.locals import *  # type: ignore
 from typing import List, Tuple
+
+os.environ["SDL_VIDEODRIVER"] = "dummy"
 
 Cell = Tuple[int, int]
 Cells = List[int]
