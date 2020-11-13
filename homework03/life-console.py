@@ -28,7 +28,4 @@ class Console(UI):
             self.draw_borders(screen)
             self.draw_grid(screen)
             screen.refresh()
-            import time
-
-            time.sleep(1)
             self.life.step()
