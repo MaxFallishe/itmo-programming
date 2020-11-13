@@ -18,9 +18,9 @@ class Console(UI):
             for column_num in range(len(self.life.curr_generation[row_num])):
                 cell_status = self.life.curr_generation[row_num][column_num]
                 if cell_status == 1:
-                    screen.addch(row_num+1, column_num+1, '*')
+                    screen.addch(row_num + 1, column_num + 1, "*")
                 elif cell_status == 0:
-                    screen.addch(row_num + 1, column_num + 1, ' ')
+                    screen.addch(row_num + 1, column_num + 1, " ")
 
     def run(self) -> None:
         screen = curses.initscr()
@@ -29,6 +29,6 @@ class Console(UI):
             self.draw_grid(screen)
             screen.refresh()
             import time
+
             time.sleep(1)
             self.life.step()
-
