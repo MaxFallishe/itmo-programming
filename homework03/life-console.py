@@ -33,7 +33,7 @@ class Console(UI):
             time.sleep(2)
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     life = GameOfLife((10, 10))
     ui = Console(life)
     ui.run()
