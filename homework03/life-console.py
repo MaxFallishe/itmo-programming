@@ -1,3 +1,4 @@
+import time
 import curses
 
 from life import GameOfLife
@@ -29,3 +30,10 @@ class Console(UI):
             self.draw_grid(screen)
             screen.refresh()
             self.life.step()
+            time.sleep(2)
+
+
+if __name__ == '__main__':
+    life = GameOfLife((10, 10))
+    ui = Console(life)
+    ui.run()

@@ -6,7 +6,7 @@ from ui import UI
 
 
 class GUI(UI):
-    def __init__(self, life: GameOfLife, cell_size: int = 100, speed: int = 10) -> None:
+    def __init__(self, life: GameOfLife, cell_size: int = 10, speed: int = 10) -> None:
         super().__init__(life)
         self.cell_size = cell_size
         self.speed = speed
@@ -85,6 +85,7 @@ class GUI(UI):
         pygame.quit()
 
 
-# life = GameOfLife((4, 4))
-# ui = GUI(life)
-# ui.run()
+if __name__ == '__main__':
+    life = GameOfLife((100, 100))
+    ui = GUI(life)
+    ui.run()
