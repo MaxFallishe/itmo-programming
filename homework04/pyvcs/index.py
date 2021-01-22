@@ -1,3 +1,4 @@
+#  type: ignore
 import hashlib
 import operator
 import os
