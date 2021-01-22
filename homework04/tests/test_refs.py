@@ -1,3 +1,4 @@
+#  type: ignore
 import unittest
 
 from pyfakefs.fake_filesystem_unittest import TestCase
