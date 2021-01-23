@@ -1,15 +1,15 @@
+import math
 import textwrap
 import time
 import typing as tp
 from string import Template
-import math
 
 import pandas as pd
 from pandas import json_normalize
 
 from vkapi import config, session
-from vkapi.exceptions import APIError
 from vkapi.config import VK_CONFIG
+from vkapi.exceptions import APIError
 
 
 def get_posts_2500(
