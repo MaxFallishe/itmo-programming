@@ -21,9 +21,9 @@ def ego_network(
     if friends is None:
         fields = get_friends(user_id, fields=["nickname", "is_closed, deactivate"]).items  # type: ignore
         friends_list = [
-            friend["id"]
+            friend["id"]  # type:ignore
             for friend in fields
-            if not (friend.get("deactivate") or friend.get("is_closed"))
+            if not (friend.get("deactivate") or friend.get("is_closed"))  # type:ignore
         ]
     mutual = get_mutual(user_id, target_uids=friends)
     for person in mutual:
