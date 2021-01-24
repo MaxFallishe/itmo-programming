@@ -110,7 +110,7 @@ def read_index(gitdir: pathlib.Path) -> tp.List[GitIndexEntry]:
     result = []
     names = []
     for i in range(qty):
-        names.append(b"".join(objs[i][62:]).strip(b"\x00").decode('Windows-1251'))
+        names.append(b"".join(objs[i][62:]).strip(b"\x00").decode("Windows-1251"))
     for i in range(qty):
         x = GitIndexEntry.unpack(b"".join(objs[i][0:62]))
         result.append(
