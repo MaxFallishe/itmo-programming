@@ -39,7 +39,7 @@ def cmd_update_index(args: argparse.Namespace) -> None:
 
 
 def cmd_write_tree(args: argparse.Namespace) -> None:
-    os.remove("./.git/index") 
+    os.remove("./.git/index")  #  type: ignore
     gitdir = repo_find()
     entries = read_index(gitdir)
     sha = write_tree(gitdir, entries)
