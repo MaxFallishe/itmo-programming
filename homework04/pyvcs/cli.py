@@ -39,11 +39,17 @@ def cmd_update_index(args: argparse.Namespace) -> None:
 
 
 def cmd_write_tree(args: argparse.Namespace) -> None:
-    os.remove("./.git/index")  #  type: ignore
-    gitdir = repo_find()
-    entries = read_index(gitdir)
-    sha = write_tree(gitdir, entries)
-    print(sha)
+    try:
+        gitdir = repo_find()
+        entries = read_index(gitdir)
+        sha = write_tree(gitdir, entries)
+        print(sha)
+    except:
+        os.remove("./.git/index")
+        gitdir = repo_find()
+        entries = read_index(gitdir)
+        sha = write_tree(gitdir, entries)
+        print(sha)
 
 
 def cmd_commit_tree(args: argparse.Namespace) -> None:
