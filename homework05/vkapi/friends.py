@@ -41,7 +41,13 @@ def get_friends(
         "offset": offset,
     }
     r = session.get("friends.get", params=params)
-    return FriendsResponse(**r.json()["response"])
+    if r.status_code != 200:
+        raise APIError("Ошибка, code: ", r.status_code)
+
+    document = r.json()
+    if "error" in document or not r.ok:
+        raise APIError(document["error"]["error_msg"])
+    return FriendsResponse(**document["response"])
 
 
 class MutualFriends(tp.TypedDict):
@@ -79,7 +85,13 @@ def get_mutual(
         }
         r = session.get(f"friends.getMutual", params=params)
 
-        return r.json()["response"]
+        if r.status_code != 200:
+            raise APIError("Ошибка, code:", r.status_code)
+
+        ans = r.json()
+        if "error" in ans or not r.ok:
+            raise APIError(ans["error"]["error_msg"])
+        return ans["response"]
 
     responses = []
     if progress is None:
@@ -95,7 +107,14 @@ def get_mutual(
         }
         r = session.get(f"friends.getMutual", params=params)
 
-        json_data = r.json()
+        if r.status_code != 200:
+            raise APIError("Ошибка, code:", r.status_code)
+
+        ans = r.json()
+        if "error" in ans or not r.ok:
+            raise APIError(ans["error"]["error_msg"])
+
+        json_data = ans
         for paragraph in json_data["response"]:
             responses.append(
                 MutualFriends(

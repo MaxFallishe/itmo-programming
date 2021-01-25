@@ -54,9 +54,16 @@ def get_posts_2500(
         "access_token": VK_CONFIG["access_token"],
         "v": VK_CONFIG["version"],
     }
-    response = session.post("execute", data=data)
-    doc = response.json()
-    return doc["response"]["items"]
+    r = session.post("execute", data=data)
+    if r.status_code != 200:
+        raise APIError("Ошибка, code:", r.status_code)
+
+    ans = r.json()
+    if "error" in ans or not r.ok:
+        raise APIError(ans["error"]["error_msg"])
+
+    json_data = ans
+    return ans["response"]["items"]
 
 
 def get_wall_execute(
