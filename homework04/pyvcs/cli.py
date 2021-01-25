@@ -1,5 +1,6 @@
 #  type: ignore
 import argparse
+import os
 
 from pyvcs.index import ls_files, read_index, update_index
 from pyvcs.objects import cat_file, hash_object
@@ -38,6 +39,7 @@ def cmd_update_index(args: argparse.Namespace) -> None:
 
 
 def cmd_write_tree(args: argparse.Namespace) -> None:
+    os.remove("./.git/index") 
     gitdir = repo_find()
     entries = read_index(gitdir)
     sha = write_tree(gitdir, entries)
