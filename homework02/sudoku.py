@@ -106,7 +106,7 @@ def get_diagonals(grid: List[List[str]], pos: Tuple[int, int]) -> List[str]:
                 and column_index != coordinate_of_column
             ):
                 block_content.append(grid[row_index][column_index])
-                print(grid[row_index][column_index], row_index, column_index)
+                # print(grid[row_index][column_index], row_index, column_index)
 
             if (
                 row_index - column_index == diff_of_pos
@@ -114,7 +114,7 @@ def get_diagonals(grid: List[List[str]], pos: Tuple[int, int]) -> List[str]:
                 and column_index != coordinate_of_column
             ):
                 block_content.append(grid[row_index][column_index])
-                print(grid[row_index][column_index], row_index, column_index)
+                # print(grid[row_index][column_index], row_index, column_index)
 
     return block_content
 
