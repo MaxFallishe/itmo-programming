@@ -89,5 +89,24 @@ def caesar_breaker_brute_force(ciphertext: str, dictionary: tp.Set[str]) -> int:
     Brute force breaking a Caesar cipher.
     """
     best_shift = 0
-    # PUT YOUR CODE HERE
-    return best_shift
+
+    def filter_1(x):
+        if len(x) == len(ciphertext):
+            return x
+
+    potential_transcripts = [i for i in list(dictionary)]
+    potential_transcripts = list(filter(filter_1, potential_transcripts))
+
+    for transcript in potential_transcripts:
+        shifts = []
+
+        for letter_num in range(len(transcript)):
+            shifts.append(ord(ciphertext[letter_num]) - ord(transcript[letter_num]))
+
+        for i in range(len(shifts)):
+            if shifts[i] < 0:
+                shifts[i] += 26
+
+        if len(set(shifts)) == 1:
+            best_shift = shifts[0]
+            return best_shift
