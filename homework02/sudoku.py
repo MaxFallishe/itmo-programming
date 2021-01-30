@@ -89,6 +89,36 @@ def get_block(grid: List[List[str]], pos: Tuple[int, int]) -> List[str]:
     return block_content
 
 
+def get_diagonals(grid: List[List[str]], pos: Tuple[int, int]) -> List[str]:
+    coordinate_of_row = pos[0]
+    coordinate_of_column = pos[1]
+    grid_size = len(grid)
+    block_content = []
+
+    sum_of_pos = pos[0] + pos[1]
+    diff_of_pos = pos[0] - pos[1]
+
+    for row_index in range(grid_size):
+        for column_index in range(grid_size):
+            if (
+                row_index + column_index == sum_of_pos
+                and row_index != coordinate_of_row
+                and column_index != coordinate_of_column
+            ):
+                block_content.append(grid[row_index][column_index])
+                print(grid[row_index][column_index], row_index, column_index)
+
+            if (
+                row_index - column_index == diff_of_pos
+                and row_index != coordinate_of_row
+                and column_index != coordinate_of_column
+            ):
+                block_content.append(grid[row_index][column_index])
+                print(grid[row_index][column_index], row_index, column_index)
+
+    return block_content
+
+
 def find_empty_positions(grid: List[List[str]]) -> Optional[Tuple[int, int]]:  # type: ignore[return]
     """Найти первую свободную позицию в пазле
 
@@ -121,11 +151,14 @@ def find_possible_values(grid: List[List[str]], pos: Tuple[int, int]) -> Set[str
     already_numbers_in_column = set(get_col(grid, pos))
     already_numbers_in_row = set(get_row(grid, pos))
     already_numbers_in_block = set(get_block(grid, pos))
+    already_numbers_in_diagonals = set(get_diagonals(grid, pos))
+
     possible_numbers_for_cell = (
         range_of_possible_numbers
         - already_numbers_in_column
         - already_numbers_in_row
         - already_numbers_in_block
+        - already_numbers_in_diagonals
     )
     return possible_numbers_for_cell
 
