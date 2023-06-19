@@ -14,7 +14,13 @@ def is_prime(n: int) -> bool:
     False
     """
     # PUT YOUR CODE HERE
-    pass
+    if n > 1:
+        temp_divider = 2
+        while n % temp_divider != 0:
+            temp_divider += 1
+        return n == temp_divider
+    else:
+        return False
 
 
 def gcd(a: int, b: int) -> int:
@@ -27,7 +33,13 @@ def gcd(a: int, b: int) -> int:
     1
     """
     # PUT YOUR CODE HERE
-    pass
+    while a != 0 and b != 0:
+        if a > b:
+            a = a % b
+        else:
+            b = b % a
+    greater_common_divisor = a + b
+    return greater_common_divisor
 
 
 def multiplicative_inverse(e: int, phi: int) -> int:
@@ -39,10 +51,25 @@ def multiplicative_inverse(e: int, phi: int) -> int:
     23
     """
     # PUT YOUR CODE HERE
-    pass
+    x1, x2, x3 = 1, 0, phi
+    y1, y2, y3 = 0, 1, e
+
+    while y3 != 1:
+        if y3 == 0:
+            return 0
+        qfc = x3 // y3
+        t1 = x1 - qfc * y1
+        t2 = x2 - qfc * y2
+        t3 = x3 - qfc * y3
+        x1, x2, x3 = y1, y2, y3
+        y1, y2, y3 = t1, t2, t3
+    nod = y2 % phi
+    return nod
 
 
-def generate_keypair(p: int, q: int) -> tp.Tuple[tp.Tuple[int, int], tp.Tuple[int, int]]:
+def generate_keypair(
+    p: int, q: int
+) -> tp.Tuple[tp.Tuple[int, int], tp.Tuple[int, int]]:
     if not (is_prime(p) and is_prime(q)):
         raise ValueError("Both numbers must be prime.")
     elif p == q:
@@ -50,9 +77,11 @@ def generate_keypair(p: int, q: int) -> tp.Tuple[tp.Tuple[int, int], tp.Tuple[in
 
     # n = pq
     # PUT YOUR CODE HERE
+    n = p * q
 
     # phi = (p-1)(q-1)
     # PUT YOUR CODE HERE
+    phi = (p - 1) * (q - 1)
 
     # Choose an integer e such that e and phi(n) are coprime
     e = random.randrange(1, phi)
